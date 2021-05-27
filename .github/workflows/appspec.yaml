@@ -1,0 +1,29 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:ap-northeast-2:908248890412:task-definition/monoTDtest:1"
+        LoadBalancerInfo:
+          ContainerName: "app"
+          ContainerPort: 8089:8089
+# Optional properties
+        PlatformVersion: "LATEST"
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+            Subnets: ["subnet-0ee85408c95687ad4"]
+            SecurityGroups: ["sg-0626e517995ab6cf1"]
+            AssignPublicIp: "ENABLED"
+        CapacityProviderStrategy:
+          - Base: 1
+            CapacityProvider: "FARGATE_SPOT"
+            Weight: 2
+          - Base: 0
+            CapacityProvider: "FARGATE"
+            Weight: 1
+Hooks:
+  - BeforeInstall: "LambdaFunctionToValidateBeforeInstall"
+  - AfterInstall: "LambdaFunctionToValidateAfterInstall"
+  - AfterAllowTestTraffic: "LambdaFunctionToValidateAfterTestTrafficStarts"
+  - BeforeAllowTraffic: "LambdaFunctionToValidateBeforeAllowingProductionTraffic"
+  - AfterAllowTraffic: "LambdaFunctionToValidateAfterAllowingProductionTraffic"
