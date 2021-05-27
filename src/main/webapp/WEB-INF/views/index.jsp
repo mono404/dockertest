@@ -100,7 +100,7 @@
 
 
     function onError(error) {
-        connectingElement.textContent = '웹 소켓에 연결할 수 없습니다.';
+        connectingElement.textContent = 'Não foi possível se conectar ao WebSocket! Atualize a página e tente novamente ou entre em contato com o administrador.';
         connectingElement.style.color = 'red';
     }
 
@@ -129,10 +129,10 @@
 
         if(message.type === 'JOIN') {
             messageElement.classList.add('event-message');
-            message.content = message.sender + '님이 들어왔습니다.';
+            message.content = message.sender + ' joined!';
         } else if (message.type === 'LEAVE') {
             messageElement.classList.add('event-message');
-            message.content = message.sender + '님이 나갔습니다.';
+            message.content = message.sender + ' left!';
         } else {
             messageElement.classList.add('chat-message');
 

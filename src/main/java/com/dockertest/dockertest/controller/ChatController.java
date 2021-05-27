@@ -18,20 +18,6 @@ public class ChatController {
         return new ModelAndView("/index");
     }
 
-    @MessageMapping("/out")
-    @SendTo("/topic/out")
-    public String outroom(String message) throws Exception {
-        System.out.println("out message : " + message);
-        return message;
-    }
-
-    @MessageMapping("/in")
-    @SendTo("/topic/in")
-    public String inroom(String message) throws Exception {
-        System.out.println("in message : " + message);
-        return message;
-    }
-
     @MessageMapping("/chat.register")
     @SendTo("/topic/public")
     public ChatMessage register(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
