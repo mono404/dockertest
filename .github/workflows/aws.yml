@@ -85,3 +85,4 @@ jobs:
         service: monoChatting
         cluster: monotest
         wait-for-service-stability: true
+        codedeploy-appspec: appspec.yaml
