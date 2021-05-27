@@ -8,10 +8,10 @@ logging:
 # properties
 #spring:datasource.url=jdbc:mysql://localhost:3306/carrotaction?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
 spring:
-    mvc:
-        view:
-            prefix: /WEB-INF/views
-            suffix: ".jsp"
+#    mvc:
+#        view:
+#            prefix: /WEB-INF/views
+#            suffix: ".jsp"
     datasource:
         url: "jdbc:mysql://localhost:3306/carrotaction?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true"
         username: root

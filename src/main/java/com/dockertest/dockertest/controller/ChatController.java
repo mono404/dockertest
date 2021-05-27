@@ -13,10 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 //@Controller
 public class ChatController {
 
-    @GetMapping(path = "/")
-    public ModelAndView Chatting() {
-        return new ModelAndView("/index");
-    }
+//    @GetMapping(path = "/")
+//    public ModelAndView Chatting() {
+//        return new ModelAndView("/index");
+//    }
 
     @MessageMapping("/chat.register")
     @SendTo("/topic/public")

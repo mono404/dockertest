@@ -100,7 +100,7 @@
 
 
     function onError(error) {
-        connectingElement.textContent = 'Não foi possível se conectar ao WebSocket! Atualize a página e tente novamente ou entre em contato com o administrador.';
+        connectingElement.textContent = 'WebSocket에 연결할 수 없습니다! 페이지를 새로 고치고 다시 시도하거나 관리자에게 문의하십시오. ';
         connectingElement.style.color = 'red';
     }
 
