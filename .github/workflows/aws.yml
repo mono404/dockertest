@@ -23,11 +23,17 @@
 #    See the documentation for each action used below for the recommended IAM policies for this IAM user,
 #    and best practices on handling the access key credentials.
 
+name: Deploy to Amazon ECS
+
 on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
   release:
     types: [created]
-
-name: Deploy to Amazon ECS
 
 jobs:
   deploy:
@@ -54,7 +60,7 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: my-ecr-repo
+        ECR_REPOSITORY: monotest
         IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
@@ -68,8 +74,8 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: task-definition.json
-        container-name: sample-app
+        task-definition: monoTDtest.json
+        container-name: monotest
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
